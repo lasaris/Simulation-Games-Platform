@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="Seng.Game.Desktop.Views.IntermissionModuleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:intermissionModule="clr-namespace:Seng.Game.Business.DTOs.Components.IntermissionModule;assembly=Seng.Game.Business"
+             xmlns:converters="clr-namespace:Seng.Game.Desktop.Views.Converters"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Background="Black">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary  Source="../Views/Styles/IntermissionModule.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <converters:FrameTypeToVisibilityConverter x:Key="FrameTypeToVisibilityConverter" />
+
+            <DataTemplate x:Key="OptionsDataTemplate"
+                          DataType="{x:Type intermissionModule:OptionComponentDto}">
+                <RadioButton Content="{Binding Text}"
+                             Style="{StaticResource OptionRadioButtonStyle}"
+                             Command="{Binding DataContext.OptionSelectCommand,
+                                       RelativeSource={RelativeSource FindAncestor,
+                                       AncestorType={x:Type UserControl}}, Mode=OneWay}"
+                             CommandParameter="{Binding}">
+                </RadioButton>
+            </DataTemplate>
+
+            <DataTemplate x:Key="MultichoiceOptionsDataTemplate"
+                          DataType="{x:Type intermissionModule:OptionComponentDto}">
+                <ToggleButton Content="{Binding Text}"
+                              Style="{StaticResource MultichoiceOptionToggleButtonStyle}"
+                              Command="{Binding DataContext.OptionSelectCommand,
+                                                RelativeSource={RelativeSource FindAncestor,
+                                                AncestorType={x:Type UserControl}}, Mode=OneWay}"
+                              CommandParameter="{Binding}">
+                </ToggleButton>
+            </DataTemplate>
+
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <DockPanel HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Style="{StaticResource OpacityAnimationStyle}"
+               Effect="{Binding CurrentFrame, NotifyOnTargetUpdated=True}"
+               Margin="150 0">
+
+        <TextBlock DockPanel.Dock="Top"
+                   Visibility="{Binding CurrentFrameType,
+                                Converter={StaticResource FrameTypeToVisibilityConverter},
+                                ConverterParameter=Text}"
+                   Text="{Binding CurrentFrame.TextParagraph}"
+                   TextWrapping="Wrap"
+                   Style="{StaticResource TextStyle}">
+        </TextBlock>
+
+        <StackPanel DockPanel.Dock="Top"
+                    Visibility="{Binding CurrentFrameType,
+                                 Converter={StaticResource FrameTypeToVisibilityConverter},
+                                 ConverterParameter=Question}">
+
+            <TextBlock Text="{Binding CurrentFrame.Question.Text}"
+                       TextWrapping="Wrap"
+                       Style="{StaticResource TextStyle}" />
+
+            <ItemsControl ItemsSource="{Binding CurrentFrame.Question.Options}"
+                          ItemTemplate="{StaticResource OptionsDataTemplate}"
+                          Margin="0 5 0 0" />
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Top"
+                    Visibility="{Binding CurrentFrameType,
+                                 Converter={StaticResource FrameTypeToVisibilityConverter},
+                                 ConverterParameter=MultichoiceQuestion}">
+
+            <TextBlock Text="{Binding CurrentFrame.Question.Text}"
+                       TextWrapping="Wrap"
+                       Style="{StaticResource TextStyle}" />
+
+            <ItemsControl ItemsSource="{Binding CurrentFrame.Question.Options}"
+                          ItemTemplate="{StaticResource MultichoiceOptionsDataTemplate}"
+                          Margin="0 5 0 0" />
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Top"
+                    Visibility="{Binding CurrentFrameType,
+                                 Converter={StaticResource FrameTypeToVisibilityConverter},
+                                 ConverterParameter=UserInput}">
+
+            <TextBlock Text="{Binding CurrentFrame.TextParagraph}"
+                       TextWrapping="Wrap"
+                       Style="{StaticResource TextStyle}" />
+
+            <Border Visibility="{Binding CurrentFrameType,
+                                 Converter={StaticResource FrameTypeToVisibilityConverter},
+                                 ConverterParameter=UserInput}"
+                    BorderBrush="{DynamicResource ThemeColor}"
+                    BorderThickness="3"
+                    HorizontalAlignment="Center"
+                    Margin="0 25 0 0">
+                <!--TODO: Remove FontFamily after testing scenario-->
+                <TextBox Text="{Binding CurrentFrame.UserInput}"
+                         Style="{StaticResource UserInputTextBoxStyle}"
+                         FontFamily="pack://application:,,,/Resources/#password" />
+            </Border>
+        </StackPanel>
+
+        <Button DockPanel.Dock="Top"
+                Content="{Binding CurrentFrame.Button.Text}"
+                Style="{StaticResource ConfirmationButtonStyle}"
+                Command="{Binding NextFrameOrCloseCommand, Mode=OneWay}"
+                Margin="0 40 0 0"
+                HorizontalAlignment="Center" />
+    </DockPanel>
+
+</UserControl>

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.30" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.112" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Seng.Game.Business\Seng.Game.Business.csproj" />
+    <ProjectReference Include="..\Seng.Common.Entities\Seng.Common.Entities.csproj" />
+    <ProjectReference Include="..\Seng.Web.Business\Seng.Web.Business.csproj" />
+  </ItemGroup>
+
+</Project>

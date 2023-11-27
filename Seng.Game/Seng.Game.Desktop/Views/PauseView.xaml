@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="Seng.Game.Desktop.Views.PauseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Background="Black">
+
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize"
+                    Value="40" />
+            <Setter Property="Foreground"
+                    Value="White" />
+            <Setter Property="Margin"
+                    Value="10" />
+            <Style.Triggers>
+                <Trigger Property="TextBlock.IsMouseOver"
+                         Value="True">
+                    <Setter Property="TextBlock.Foreground" Value="{DynamicResource ThemeColor}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+        <TextBlock Text="Theme"
+                   HorizontalAlignment="Center">
+            <TextBlock.InputBindings>
+                <MouseBinding MouseAction="LeftClick"
+                              Command="{Binding DataContext.ChangeThemeCommand,
+                                    RelativeSource={RelativeSource FindAncestor, 
+                                    AncestorType={x:Type UserControl}}, Mode=OneWay}" />
+            </TextBlock.InputBindings>
+        </TextBlock>
+        <TextBlock Text="Back to game"
+                   HorizontalAlignment="Center">
+            <TextBlock.InputBindings>
+                <MouseBinding MouseAction="LeftClick"
+                              Command="{Binding DataContext.BackToGameCommand,
+                                    RelativeSource={RelativeSource FindAncestor, 
+                                    AncestorType={x:Type UserControl}}, Mode=OneWay}" />
+            </TextBlock.InputBindings>
+        </TextBlock>
+
+        <TextBlock Text="Exit game"
+                   HorizontalAlignment="Center">
+            <TextBlock.InputBindings>
+                <MouseBinding MouseAction="LeftClick"
+                              Command="{Binding DataContext.ExitApplicationCommand,
+                                    RelativeSource={RelativeSource FindAncestor, 
+                                    AncestorType={x:Type UserControl}}, Mode=OneWay}" />
+            </TextBlock.InputBindings>
+        </TextBlock>
+    </StackPanel>
+    
+</UserControl>

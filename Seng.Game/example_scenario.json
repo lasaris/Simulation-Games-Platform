@@ -1,0 +1,252 @@
+{
+  "Modules": [
+    {
+      "Id": 1,
+      "IsVisible": true
+    },
+    {
+      "Id": 2,
+      "IsVisible": true
+    }
+  ],
+  "IntermissionModules": [
+    {
+      "Id": 1,
+      "ModuleId": 1,
+      "CurrentlyVisibleFrameId": 1
+    }
+  ],
+  "ButtonComponents": [
+    {
+      "Id": 1,
+      "ComponentId": 1,
+      "Text": "Confirm"
+    },
+    {
+      "Id": 2,
+      "ComponentId": 2,
+      "Text": "Go next"
+    },
+    {
+      "Id": 3,
+      "ComponentId": 3,
+      "Text": "End"
+    }
+  ],
+  "QuestionComponents": [
+    {
+      "Id": 1,
+      "ComponentId": 7,
+      "Text": "Do you want to proceed, or to end?"
+    }
+  ],
+  "OptionComponents": [
+    {
+      "Id": 1,
+      "ComponentId": 8,
+      "Text": "Proceed",
+      "QuestionComponentId": 1
+    },
+    {
+      "Id": 2,
+      "ComponentId": 9,
+      "Text": "End",
+      "QuestionComponentId": 1
+    }
+  ],
+  "IntermissionFrameComponents": [
+    {
+      "Id": 1,
+      "IntermissionModuleId": 1,
+      "ComponentId": 4,
+      "ButtonComponentId": 1,
+      "QuestionComponentId": 1,
+      "TextParagraph": "Hello, this is the beggining of the game. You can choose to proceed or to end the game",
+      "FrameType": "Question"
+    },
+    {
+      "Id": 2,
+      "IntermissionModuleId": 1,
+      "ComponentId": 5,
+      "ButtonComponentId": 2,
+      "TextParagraph": "You have chosen to continue. Now you can go only to the next frame",
+      "FrameType": "Text"
+    },
+    {
+      "Id": 3,
+      "IntermissionModuleId": 1,
+      "ComponentId": 6,
+      "ButtonComponentId": 3,
+      "TextParagraph": "This is the last thing you will see in this game. Push the button to end it.",
+      "FrameType": "Text"
+    }
+  ],
+  "Components": [
+    {
+      "Id": 1
+    },
+    {
+      "Id": 2
+    },
+    {
+      "Id": 3
+    },
+    {
+      "Id": 4
+    },
+    {
+      "Id": 5
+    },
+    {
+      "Id": 6
+    },
+    {
+      "Id": 7
+    },
+    {
+      "Id": 8
+    },
+    {
+      "Id": 9
+    },
+    {
+      "Id": 10
+    },
+    {
+      "Id": 11
+    },
+    {
+      "Id": 12
+    },
+    {
+      "Id": 13
+    },
+    {
+      "Id": 14
+    }
+  ],
+  "GameActions": [
+    {
+      "Id": 1,
+      "Type": "SwitchIntermissionFrame"
+    },
+    {
+      "Id": 2,
+      "Type": "SwitchIntermissionFrame"
+    },
+    {
+      "Id": 3,
+      "Type": "SwitchIntermissionFrame"
+    }
+  ],
+  "SwitchIntermissionFrameActions": [
+    {
+      "Id": 1,
+      "GameActionId": 1,
+      "NewIntermissionFrameComponentId": 2,
+      "IntermissionModuleId": 1
+    },
+    {
+      "Id": 2,
+      "GameActionId": 2,
+      "NewIntermissionFrameComponentId": 3,
+      "IntermissionModuleId": 1
+    }
+  ],
+  "Contexts": [
+    {
+      "Id": 1,
+      "ClickedComponentId": 8,
+      "AlreadyRunActionId": null,
+      "OnClickOptionId": 1,
+      "InLast": null,
+      "InFirst": null
+    },
+    {
+      "Id": 1,
+      "ClickedComponentId": 9,
+      "AlreadyRunActionId": null,
+      "OnClickOptionId": 2,
+      "InLast": null,
+      "InFirst": null
+    }
+  ],
+  "OnClickOptions": [
+    {
+      "Id": 1,
+      "ComponentId": 1,
+      "ResultActionId": 1,
+      "UseClickedComponentConstraint": true,
+      "UseInLastConstraint": false,
+      "UseInFirstConstraint": false
+    },
+    {
+      "Id": 2,
+      "ComponentId": 1,
+      "ResultActionId": 2,
+      "UseClickedComponentConstraint": true,
+      "UseInLastConstraint": false,
+      "UseInFirstConstraint": false
+    },
+    {
+      "Id": 3,
+      "ComponentId": 2,
+      "ResultActionId": 2,
+      "UseClickedComponentConstraint": false,
+      "UseInLastConstraint": false,
+      "UseInFirstConstraint": false
+    },
+    {
+      "Id": 4,
+      "ComponentId": 3,
+      "ResultActionId": 3,
+      "UseClickedComponentConstraint": false,
+      "UseInLastConstraint": false,
+      "UseInFirstConstraint": false
+    }
+  ],
+  "BrowserModules": [
+    {
+      "Id": 1,
+      "SearchingMinigameComponentId": 1,
+      "ModuleId": 2
+    }
+  ],
+  "SearchingMinigameComponents": [
+    {
+      "Id": 1,
+      "Solution": "abcdef",
+      "IsCompleted": false,
+      "Height": 20,
+      "Width": 30,
+      "WordComponentId": 1,
+      "ComponentId": 10
+    }
+  ],
+  "WordComponents": [
+    {
+      "Id": 1,
+      "Value": "abacava",
+      "SearchingMinigameComponentId": 1,
+      "ComponentId": 11
+    },
+    {
+      "Id": 2,
+      "Value": "fgfsgfdsg",
+      "SearchingMinigameComponentId": 1,
+      "ComponentId": 12
+    },
+    {
+      "Id": 3,
+      "Value": "dsafngh",
+      "SearchingMinigameComponentId": 1,
+      "ComponentId": 13
+    },
+    {
+      "Id": 4,
+      "Value": "rewyeuokcv",
+      "SearchingMinigameComponentId": 1,
+      "ComponentId": 14
+    }
+  ]
+}
